@@ -517,7 +517,7 @@ a {
     border: 0px solid rgb(188, 255, 55);
     object-fit: contain;
     /* Optional: prevents distortion */
-    transform: translate(30%, 11.7%);
+    transform: translate(0%, -6.3%);
 }
 
 .imgcontainerother {

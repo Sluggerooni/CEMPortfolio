@@ -1,17 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById("everything");
+    const container = document.getElementById("everything") || document.getElementById("everythingres");
     const button = document.querySelector(".tog");
 
     document.body.classList.add('fade-in');
 
-    const elementsToAnimate = Array.from(document.querySelectorAll('p, a')).filter(el => !el.closest('#footer'));
+    const elementsToAnimate = Array.from(document.querySelectorAll('p, a')).filter(el => !el.closest('#footer, #footerres2'));
     elementsToAnimate.forEach((el, index) => {
         setTimeout(() => {
             el.classList.add('fade-in-up');
         }, index * 80);
     });
 
-    const links = document.querySelectorAll('#footer a');
+    const links = document.querySelectorAll('#footer a, #footeres2 a');
     links.forEach(link => {
         if (!link.href || link.getAttribute("href").startsWith("#")) return;
 
@@ -30,11 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme === "blue") {
         container.classList.add("blue-theme");
+        document.body.classList.add("blue-theme");
     }
     button.innerText = "Touch me!";
     button.addEventListener('click', () => {
-        container.classList.toggle("blue-theme");
-        localStorage.setItem("theme", container.classList.contains("blue-theme") ? "blue" : "green");
+        const isBlue = container.classList.toggle("blue-theme");
+        document.body.classList.toggle("blue-theme", isBlue);
+        localStorage.setItem("theme", isBlue ? "blue" : "green");
     });
 
     // Carousel
